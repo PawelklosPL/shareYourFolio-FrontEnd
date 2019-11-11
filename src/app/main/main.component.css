@@ -1,0 +1,15 @@
+.Badge {
+    margin-left: 5px; 
+}
+#sharePointScore{
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+    font-weight: bold;
+}
+@media (min-width: 1200px) {
+    .card-columns {
+        column-count: 3;
+    }
+}

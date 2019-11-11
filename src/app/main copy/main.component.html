@@ -1,0 +1,25 @@
+<div class="container">
+    <div>
+        <div class="container">
+            <h2>Simple Collapsible</h2>
+            <a href="#demo" class="btn btn-primary" data-toggle="collapse">Simple collapsible</a>
+            <div id="demo" class="collapse">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </div>
+        </div>
+    </div>
+
+    <div class="card-columns">
+        <div *ngFor="let avatar of avatars" class="card">
+            <div class="Badge badge-pill badge-warning" id="sharePointScore">{{avatar.sharePoint}}</div>
+            <img alt="{{avatar.shortDescription}}" class="card-img-top img-fluid" src="{{avatar.imagineUrl}}">
+            <div class="card-block">
+                <h4 class="card-title">{{avatar.folderName}}</h4>
+                <span *ngFor="let tag of avatar.tags" class="Badge badge-pill badge-success">{{tag | titlecase}}</span>
+                <p class="card-text">{{avatar.shortDescription}}</p>
+            </div>
+        </div>
+    </div>
+</div>

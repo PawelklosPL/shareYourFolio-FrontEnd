@@ -1,0 +1,16 @@
+<!-- <div>
+    <app-option></app-option>
+</div> -->
+<div class="container" >
+    <div class="card-columns">
+        <div *ngFor="let avatar of avatars" class="card">
+            <div class="Badge badge-pill badge-warning" id="sharePointScore">{{avatar.sharePoint}}</div>
+            <img alt="{{avatar.shortDescription}}" class="img-thumbnail img-fluid"  src="{{avatar.imagineUrl}}">
+            <div class="card-block">
+                <h4 class="card-title">{{avatar.folderName}}</h4>
+                <span *ngFor="let tag of avatar.tags" class="Badge badge-pill badge-success">{{tag | titlecase}}</span>
+                <p class="card-text">{{avatar.shortDescription}}</p>
+            </div>
+        </div>
+    </div>
+</div>
