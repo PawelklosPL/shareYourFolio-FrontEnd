@@ -13,3 +13,14 @@
         column-count: 3;
     }
 }
+#eyeIco{
+    position: absolute;
+    right: 30px;
+    top: 86px;
+    cursor: pointer;
+}
+#collapseSettingWindow{
+    position: absolute;
+    right: 30px;
+    top: 116px;
+}

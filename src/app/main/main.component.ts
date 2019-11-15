@@ -10,7 +10,7 @@ import { MainService } from './main.service';
 export class MainComponent implements OnInit {
   avatars: Avatar[];
 
-
+  public isCollapsed = false;
   constructor(private mainService: MainService) { }
 
   ngOnInit() {
