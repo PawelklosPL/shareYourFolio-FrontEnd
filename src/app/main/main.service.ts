@@ -20,8 +20,9 @@ export class MainService {
         avatar.authorName = 'Pancake';
         avatar.authorId = '1234';
         avatar.folderName = 'Placuszki';
-        avatar.tags = ['food', 'pancake', 'dinner']
+        avatar.tags = this.randomTags();
         avatar.publishDate = new Date(Date.now());
+        avatar.imagesUrl = this.randomImage();
         avatar.sharePoint = this.randSharePoint();
         avatar.shortDescription = 'Pancake is a good diner.'
         return avatar;
@@ -31,8 +32,9 @@ export class MainService {
         avatar.authorName = 'House';
         avatar.authorId = '2222';
         avatar.folderName = 'Best homes in the north';
-        avatar.tags = ['home', 'north']
+        avatar.tags = this.randomTags();
         avatar.publishDate = new Date(Date.now());
+        avatar.imagesUrl = this.randomImage();
         avatar.sharePoint = this.randSharePoint();
         avatar.shortDescription = 'An country demesne message it. Bachelor domestic extended doubtful as concerns at. Morning prudent removal an letters by. On could my in order never it. Or excited certain sixteen it to parties colonel. '
         return avatar;
@@ -42,8 +44,9 @@ export class MainService {
         avatar.authorName = 'Dogs';
         avatar.authorId = '3333';
         avatar.folderName = 'Faithful dogs';
-        avatar.tags = ['Dogs', 'Pet', 'Faithful'];
+        avatar.tags = this.randomTags();
         avatar.publishDate = new Date(Date.now());
+        avatar.imagesUrl = this.randomImage();
         avatar.sharePoint = this.randSharePoint();
         avatar.shortDescription = 'Brother set had private his letters observe outward resolve. Shutters ye marriage to throwing we as. Effect in if agreed he wished wanted admire expect. Or shortly visitor is comfort placing to cheered do. Few hills tears are weeks saw. Partiality insensible celebrated is in.'
         return avatar;
@@ -53,10 +56,11 @@ export class MainService {
         avatar.authorName = 'Cats';
         avatar.authorId = '4444';
         avatar.folderName = 'Cats are the best';
-        avatar.tags = ['Cats', 'Cat', 'Best']
+        avatar.tags = this.randomTags();
         avatar.publishDate = new Date(Date.now());
+        avatar.imagesUrl = this.randomImage();
         avatar.sharePoint = this.randSharePoint();
-        avatar.shortDescription = 'cats, are better than dog.'
+        avatar.shortDescription = 'cats, are better than dogs.'
         return avatar;
     }
     private pcPartAvatar(): Avatar {
@@ -64,10 +68,47 @@ export class MainService {
         avatar.authorName = 'PcPart';
         avatar.authorId = '5555';
         avatar.folderName = 'Pc parts';
-        avatar.tags = ['pc', 'hdd', 'ssd', 'drive', 'parts'];
+        avatar.tags = this.randomTags();
         avatar.publishDate = new Date(Date.now());
+        avatar.imagesUrl = this.randomImage();
         avatar.sharePoint = this.randSharePoint();
         avatar.shortDescription = 'Horses seeing at played plenty nature to expect we. Young say led stood hills own thing get.'
         return avatar;
     }
+
+    private randomTags(): string[]{
+        let tags : string[] = ['pc','hdd', 'ssd', 'drive', 'parts','Cats', 'Cat', 'Best','Dogs', 'Pet', 'Faithful','food', 'pancake', 'dinner'];
+        
+        return this.randomUniqueElementFromList(5, tags, true);
+        }
+
+        //#toDo
+        //Wyjebuje się zawsze jakiś placuszek, poprawić, bo array randomImage jest pusty 
+        
+        private randomUniqueElementFromList(uniqueElementNumber: number, elements: string[], couldBeEmpty: boolean) : string[] {
+            let tagNumber = Math.floor(Math.random() * Math.floor(uniqueElementNumber));
+            if (tagNumber == 0 && couldBeEmpty == false){
+                tagNumber = 1;
+            }
+            let finalTags: string[] = [];
+            for(let i=0; i < tagNumber; i++){
+                let random = Math.floor(Math.random() * Math.floor(elements.length));
+                if(finalTags.find((tag)=>{return tag == elements[random]})){ 
+                    i -= 1;
+                } else {
+                    finalTags.push(elements[random]);
+                }
+            }
+            return finalTags;
+        }
+
+    private randomImage(): string[]{
+        let randomPicture : string[] = [];
+        const imageInTempNumber : number = 9;
+        for(let i = 0; i < imageInTempNumber ; i++){
+            randomPicture.push('/assets/temp/' + i + '.jpg');
+        }
+        return this.randomUniqueElementFromList(3, randomPicture, true);
+    }
 }
+
