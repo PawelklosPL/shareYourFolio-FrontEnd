@@ -4,45 +4,13 @@
 <div id="collapseSettingWindow" *ngIf="isCollapsed">
     <div class="card shadow p-3 mb-5 bg-white rounded">
         <div class="card-body">
-            <div class="input-group mb-3">
+            <div class="input-group mb-3" *ngFor="let windowOption of windowOptions; let i=index">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                        <input type="checkbox" aria-label="Checkbox for following text input" checked>
+                        <input type="checkbox" aria-label="Checkbox for following text input" [checked]="windowOption.value" (click)="changeWindowOptionValue(i)">
                     </div>
                 </div>
-                <input type="text" class="form-control" aria-label="Text input with checkbox" value="Nav bar">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" aria-label="Checkbox for following text input" checked>
-                    </div>
-                </div>
-                <input type="text" class="form-control" aria-label="Text input with checkbox" value="Share Points">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" aria-label="Checkbox for following text input" checked>
-                    </div>
-                </div>
-                <input type="text" class="form-control" aria-label="Text input with checkbox" value="Tags">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" aria-label="Checkbox for following text input" checked>
-                    </div>
-                </div>
-                <input type="text" class="form-control" aria-label="Text input with checkbox" value="Name">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" aria-label="Checkbox for following text input" checked>
-                    </div>
-                </div>
-                <input type="text" class="form-control" aria-label="Text input with checkbox" value="Description">
+                <input type="text" class="form-control" aria-label="Text input with checkbox" value="{{windowOption.name}}">
             </div>
         </div>
     </div>
@@ -54,9 +22,9 @@
             <div class="Badge badge-pill badge-warning" id="sharePointScore">{{avatar.sharePoint}}</div>
             <img alt="{{avatar.shortDescription}}" class="img-thumbnail img-fluid" src="{{avatar.imagesUrl[0]}}">
             <div class="card-block">
-                <h4 class="card-title">{{avatar.folderName}}</h4>
+                <h4 class="card-title" *ngIf="nameIsVisible()">{{avatar.folderName}}</h4>
                 <span *ngFor="let tag of avatar.tags" class="Badge badge-pill badge-success">{{tag | titlecase}}</span>
-                <p class="card-text">{{avatar.shortDescription}}</p>
+                <p class="card-text" *ngIf="descriptionIsVisible()" >{{avatar.shortDescription}}</p>
             </div>
         </div>
     </div>

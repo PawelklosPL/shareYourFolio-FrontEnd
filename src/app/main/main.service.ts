@@ -1,6 +1,13 @@
-import { Avatar } from './main.model';
+import { Avatar, WindowOption } from './main.model';
 
 export class MainService {
+    public getWindowOption(): WindowOption[] {
+        return[{name: "Nav bar", value: true} as WindowOption, 
+                {name: "Share Points", value: true} as WindowOption,
+                {name: "Tags", value: true} as WindowOption,
+                {name: "Name", value: true} as WindowOption,
+                {name: "Description", value: true} as WindowOption];
+    }
     public getMainAvatarList(): Avatar[] {
 
         return [
@@ -81,9 +88,6 @@ export class MainService {
         
         return this.randomUniqueElementFromList(5, tags, true);
         }
-
-        //#toDo
-        //Wyjebuje się zawsze jakiś placuszek, poprawić, bo array randomImage jest pusty 
         
         private randomUniqueElementFromList(uniqueElementNumber: number, elements: string[], couldBeEmpty: boolean) : string[] {
             let tagNumber = Math.floor(Math.random() * Math.floor(uniqueElementNumber));
@@ -108,7 +112,7 @@ export class MainService {
         for(let i = 0; i < imageInTempNumber ; i++){
             randomPicture.push('/assets/temp/' + i + '.jpg');
         }
-        return this.randomUniqueElementFromList(3, randomPicture, true);
+        return this.randomUniqueElementFromList(3, randomPicture, false);
     }
 }
 
