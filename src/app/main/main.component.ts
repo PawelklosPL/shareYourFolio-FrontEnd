@@ -19,13 +19,6 @@ export class MainComponent implements OnInit {
     this.windowOptions = this.mainService.getWindowOption();
   }
 
-  public hideDescrption(windowOptionName: string){
-
-  }
-  private applyWindowOptions(){
-
-  }
-
   public descriptionIsVisible(): boolean{
     let selectDescription = this.windowOptions.find((windowOption: WindowOption)=>{return windowOption.name =="Description"});
     return selectDescription.value;
@@ -35,8 +28,7 @@ export class MainComponent implements OnInit {
     let selectName = this.windowOptions.find((windowOption: WindowOption)=>{return windowOption.name == "Name"});
     return selectName.value;
   }
-
-
+  
   public changeWindowOptionValue(index: number) {
     this.windowOptions[index].value = !this.windowOptions[index].value;
   }
