@@ -10,10 +10,9 @@ export class MainService {
     }
     public getMainAvatarList(): Avatar[] {
 
-        let avatarNamber:number = 30;
+        let avatarNamber: number = 30;
         let avatarList: Avatar[] = [];
-        for(var i = 0; i != avatarNamber ; i++ )
-        {
+        for (var i = 0; i != avatarNamber; i++) {
             avatarList.push(this.pancakeAvatar());
             avatarList.push(this.pcPartAvatar());
             avatarList.push(this.houseAvatar());
@@ -118,6 +117,11 @@ export class MainService {
             randomPicture.push('/assets/temp/' + i + '.jpg');
         }
         return this.randomUniqueElementFromList(3, randomPicture, false);
+    }
+    public navBarIsVisible(): boolean {
+        let windowOptions = this.getWindowOption();
+        let navBarOption = windowOptions.find((windowOption) => { return windowOption.name == "Nav bar" });
+        return navBarOption.value;
     }
 }
 

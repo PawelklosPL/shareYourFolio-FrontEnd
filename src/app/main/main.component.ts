@@ -29,6 +29,16 @@ export class MainComponent implements OnInit {
     return selectName.value;
   }
 
+  public tagsAreVisible(): boolean {
+    let selectTags = this.windowOptions.find((windowOption: WindowOption) => { return windowOption.name == "Tags"});
+    return selectTags.value;
+  }
+
+  public sharePointsAreVisible():boolean {
+    let selectSharePoints = this.windowOptions.find((windowOption: WindowOption) => {return windowOption.name == "Share Points"});
+    return selectSharePoints.value;
+  }
+
   public changeWindowOptionValue(index: number) {
     this.windowOptions[index].value = !this.windowOptions[index].value;
   }
