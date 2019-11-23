@@ -10,12 +10,17 @@ export class MainService {
     }
     public getMainAvatarList(): Avatar[] {
 
-        return [
-            this.pancakeAvatar(), this.pcPartAvatar(), this.houseAvatar(),
-            this.dogsAvatar(), this.catsAvatar(), this.pancakeAvatar(),
-            this.houseAvatar(), this.dogsAvatar(), this.catsAvatar(),
-            this.houseAvatar(), this.pcPartAvatar(), this.pancakeAvatar(),
-            this.dogsAvatar(), this.pcPartAvatar()];
+        let avatarNamber:number = 30;
+        let avatarList: Avatar[] = [];
+        for(var i = 0; i != avatarNamber ; i++ )
+        {
+            avatarList.push(this.pancakeAvatar());
+            avatarList.push(this.pcPartAvatar());
+            avatarList.push(this.houseAvatar());
+            avatarList.push(this.dogsAvatar());
+            avatarList.push(this.catsAvatar());
+        }
+        return avatarList;
     }
     private randSharePoint(): number {
         const maxNumber = 3000;
