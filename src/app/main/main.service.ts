@@ -2,20 +2,20 @@ import { Avatar, WindowOption } from './main.model';
 
 export class MainService {
     public getWindowOption(): WindowOption[] {
-        return[{name: "Nav bar", value: true} as WindowOption, 
-                {name: "Share Points", value: true} as WindowOption,
-                {name: "Tags", value: true} as WindowOption,
-                {name: "Name", value: true} as WindowOption,
-                {name: "Description", value: true} as WindowOption];
+        return [{ name: "Nav bar", value: true } as WindowOption,
+        { name: "Share Points", value: true } as WindowOption,
+        { name: "Tags", value: true } as WindowOption,
+        { name: "Name", value: true } as WindowOption,
+        { name: "Description", value: true } as WindowOption];
     }
     public getMainAvatarList(): Avatar[] {
 
         return [
-            this.pancakeAvatar(), this.pcPartAvatar(), this.houseAvatar(), 
+            this.pancakeAvatar(), this.pcPartAvatar(), this.houseAvatar(),
             this.dogsAvatar(), this.catsAvatar(), this.pancakeAvatar(),
             this.houseAvatar(), this.dogsAvatar(), this.catsAvatar(),
-            this.houseAvatar(), this.pcPartAvatar(),this.pancakeAvatar(), 
-            this.dogsAvatar(),this.pcPartAvatar()];
+            this.houseAvatar(), this.pcPartAvatar(), this.pancakeAvatar(),
+            this.dogsAvatar(), this.pcPartAvatar()];
     }
     private randSharePoint(): number {
         const maxNumber = 3000;
@@ -83,33 +83,33 @@ export class MainService {
         return avatar;
     }
 
-    private randomTags(): string[]{
-        let tags : string[] = ['pc','hdd', 'ssd', 'drive', 'parts','Cats', 'Cat', 'Best','Dogs', 'Pet', 'Faithful','food', 'pancake', 'dinner'];
-        
-        return this.randomUniqueElementFromList(5, tags, true);
-        }
-        
-        private randomUniqueElementFromList(uniqueElementNumber: number, elements: string[], couldBeEmpty: boolean) : string[] {
-            let tagNumber = Math.floor(Math.random() * Math.floor(uniqueElementNumber));
-            if (tagNumber == 0 && couldBeEmpty == false){
-                tagNumber = 1;
-            }
-            let finalTags: string[] = [];
-            for(let i=0; i < tagNumber; i++){
-                let random = Math.floor(Math.random() * Math.floor(elements.length));
-                if(finalTags.find((tag)=>{return tag == elements[random]})){ 
-                    i -= 1;
-                } else {
-                    finalTags.push(elements[random]);
-                }
-            }
-            return finalTags;
-        }
+    private randomTags(): string[] {
+        let tags: string[] = ['pc', 'hdd', 'ssd', 'drive', 'parts', 'Cats', 'Cat', 'Best', 'Dogs', 'Pet', 'Faithful', 'food', 'pancake', 'dinner'];
 
-    private randomImage(): string[]{
-        let randomPicture : string[] = [];
-        const imageInTempNumber : number = 9;
-        for(let i = 0; i < imageInTempNumber ; i++){
+        return this.randomUniqueElementFromList(5, tags, true);
+    }
+
+    private randomUniqueElementFromList(uniqueElementNumber: number, elements: string[], couldBeEmpty: boolean): string[] {
+        let tagNumber = Math.floor(Math.random() * Math.floor(uniqueElementNumber));
+        if (tagNumber == 0 && couldBeEmpty == false) {
+            tagNumber = 1;
+        }
+        let finalTags: string[] = [];
+        for (let i = 0; i < tagNumber; i++) {
+            let random = Math.floor(Math.random() * Math.floor(elements.length));
+            if (finalTags.find((tag) => { return tag == elements[random] })) {
+                i -= 1;
+            } else {
+                finalTags.push(elements[random]);
+            }
+        }
+        return finalTags;
+    }
+
+    private randomImage(): string[] {
+        let randomPicture: string[] = [];
+        const imageInTempNumber: number = 9;
+        for (let i = 0; i < imageInTempNumber; i++) {
             randomPicture.push('/assets/temp/' + i + '.jpg');
         }
         return this.randomUniqueElementFromList(3, randomPicture, false);

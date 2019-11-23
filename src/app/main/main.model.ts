@@ -7,13 +7,9 @@ export class Avatar {
     public imagesUrl: string[];
     public tags: string[];
     public sharePoint: number;
-
-    constructor() {
-
-    }
+    constructor() { }
 }
-
 export class WindowOption {
-    public name : string;
-    public value : boolean;
+    public name: string;
+    public value: boolean;
 }

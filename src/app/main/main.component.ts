@@ -19,16 +19,16 @@ export class MainComponent implements OnInit {
     this.windowOptions = this.mainService.getWindowOption();
   }
 
-  public descriptionIsVisible(): boolean{
-    let selectDescription = this.windowOptions.find((windowOption: WindowOption)=>{return windowOption.name =="Description"});
+  public descriptionIsVisible(): boolean {
+    let selectDescription = this.windowOptions.find((windowOption: WindowOption) => { return windowOption.name == "Description" });
     return selectDescription.value;
   }
 
-  public nameIsVisible(): boolean{
-    let selectName = this.windowOptions.find((windowOption: WindowOption)=>{return windowOption.name == "Name"});
+  public nameIsVisible(): boolean {
+    let selectName = this.windowOptions.find((windowOption: WindowOption) => { return windowOption.name == "Name" });
     return selectName.value;
   }
-  
+
   public changeWindowOptionValue(index: number) {
     this.windowOptions[index].value = !this.windowOptions[index].value;
   }

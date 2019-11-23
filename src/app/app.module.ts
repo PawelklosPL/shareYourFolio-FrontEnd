@@ -8,7 +8,6 @@ import { UserProjectComponent } from './user-project/user-project.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainService } from './main/main.service';
-import { OptionComponent } from './main/option/option.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +15,7 @@ import { OptionComponent } from './main/option/option.component';
     MainComponent,
     UserSettingsComponent,
     UserProjectComponent,
-    HeaderComponent,
-    OptionComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
