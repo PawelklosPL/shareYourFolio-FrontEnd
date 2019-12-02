@@ -1,4 +1,5 @@
 export class Avatar {
+    public id: number;
     public authorName: string;
     public authorId: string;
     public folderName: string;
