@@ -5,6 +5,7 @@ import { AppState } from './auth.model';
 import { AuthService } from './auth.service';
 import { environment } from 'src/environments/environment';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -18,35 +19,36 @@ export class AuthComponent implements OnInit {
   private storeSub: Subscription;
 
   public userToken: string = "";
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     // console.log(environment.serverUrl);
   }
-  public onSubmit(form: NgForm){
+  public onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
-  }
+    }
 
 
 
-  const email = form.value.email;
-  const password = form.value.password;
-
+    const email = form.value.email;
+    const password = form.value.password;
+    sessionStorage.setItem('Token', 'spodnie');
     this.authService.login(email, password).subscribe((responseData: Req) => {
       this.userToken = responseData.access_token;
       // console.log(this.userToken);
-      sessionStorage.setItem("Token",responseData.access_token);
+      sessionStorage.setItem("Token", responseData.access_token);
       sessionStorage.setItem("IsLoggedIn", "true");
     });
+this.router.navigate(['/main']);
   }
 
-} 
-export class Req{
-    public  expires:string;
-  public issued:string
-  public access_token:string;
-  public expires_in:number;
-  public token_type:string;
-  public userName:string;
+}
+export class Req {
+  public expires: string;
+  public issued: string
+  public access_token: string;
+  public expires_in: number;
+  public token_type: string;
+  public userName: string;
 }

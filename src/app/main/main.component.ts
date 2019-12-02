@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Avatar, WindowOption } from './main.model';
 import { MainService } from './main.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -12,10 +13,10 @@ export class MainComponent implements OnInit {
 
   windowOptions: WindowOption[];
   public isCollapsed = false;
-  constructor(private mainService: MainService) { }
+  constructor(private mainService: MainService, private router: Router) { }
 
   ngOnInit() {
-    this.avatars = this.mainService.getMainAvatarList();
+        this.avatars = this.mainService.getMainAvatarList();
     this.windowOptions = this.mainService.getWindowOption();
   }
 

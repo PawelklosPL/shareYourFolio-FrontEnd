@@ -35,6 +35,6 @@ export class AuthService {
 
     }
     public logoff() {
-
+        sessionStorage.clear();
     }
 }

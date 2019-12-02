@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-settings',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserSettingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.redirectIfNotAuthorised();
+  }
+  
+  private redirectIfNotAuthorised() {
+    let token: string = sessionStorage.getItem("Token");
+    if(token == null){
+      this.router.navigate(['auth']);
+    }
   }
 
 }
