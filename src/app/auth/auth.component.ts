@@ -17,30 +17,23 @@ export class AuthComponent implements OnInit {
   error: string = null;
   private closeSub: Subscription;
   private storeSub: Subscription;
-
   public userToken: string = "";
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    // console.log(environment.serverUrl);
   }
   public onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
     }
-
-
-
     const email = form.value.email;
     const password = form.value.password;
-    sessionStorage.setItem('Token', 'spodnie');
     this.authService.login(email, password).subscribe((responseData: Req) => {
       this.userToken = responseData.access_token;
-      // console.log(this.userToken);
       sessionStorage.setItem("Token", responseData.access_token);
       sessionStorage.setItem("IsLoggedIn", "true");
     });
-this.router.navigate(['/main']);
+    this.router.navigate(['/main']);
   }
 
 }
