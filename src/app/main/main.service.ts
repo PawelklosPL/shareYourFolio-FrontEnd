@@ -1,6 +1,14 @@
 import { Avatar, WindowOption } from './main.model';
+import { Observable } from 'rxjs';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core';
 
+@Injectable({ providedIn: 'root' })
 export class MainService {
+    constructor(private http: HttpClient){
+    }
+
     public getWindowOption(): WindowOption[] {
         return [{ name: "Nav bar", value: true } as WindowOption,
         { name: "Share Points", value: true } as WindowOption,
@@ -9,7 +17,6 @@ export class MainService {
         { name: "Description", value: true } as WindowOption];
     }
     public getMainAvatarList(): Avatar[] {
-
         let avatarNamber: number = 30;
         let avatarList: Avatar[] = [];
         for (var i = 0; i != avatarNamber; i++) {
@@ -21,6 +28,14 @@ export class MainService {
         }
         return avatarList;
     }
+
+    public getMainAvatar():Observable<Object> {
+        const header = new HttpHeaders().set("Content-Type", "application/x-www-form-urlencoded");
+        let avatarListRequest: Observable<Object> = this.http.get(`${environment.serverUrl}/Avatar`
+        );
+        return avatarListRequest;
+    }
+
     private randSharePoint(): number {
         const maxNumber = 3000;
         return Math.floor(Math.random() * Math.floor(maxNumber));

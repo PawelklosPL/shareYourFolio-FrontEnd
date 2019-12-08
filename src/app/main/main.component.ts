@@ -16,13 +16,14 @@ export class MainComponent implements OnInit {
   constructor(private mainService: MainService, private router: Router) { }
 
   ngOnInit() {
-        this.avatars = this.mainService.getMainAvatarList();
+   // this.avatars = this.mainService.getMainAvatarList();
     this.windowOptions = this.mainService.getWindowOption();
+    this.getAvatars(); 
   }
 
   public descriptionIsVisible(): boolean {
     let selectDescription = this.windowOptions.find((windowOption: WindowOption) => { return windowOption.name == "Description" });
-    return selectDescription.value;
+    return selectDescription.value; 
   }
 
   public nameIsVisible(): boolean {
@@ -42,5 +43,11 @@ export class MainComponent implements OnInit {
 
   public changeWindowOptionValue(index: number) {
     this.windowOptions[index].value = !this.windowOptions[index].value;
+  }
+
+  private getAvatars(){
+    this.mainService.getMainAvatar().subscribe((avatars: Avatar[]) => {
+      console.log(avatars);
+    })
   }
 }
