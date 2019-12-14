@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Avatar, WindowOption } from './main.model';
+import { WindowOption } from './main.model';
 import { MainService } from './main.service';
 import { Router } from '@angular/router';
+import { Avatar } from '../user-project/avatar/avatar.model';
 
 @Component({
   selector: 'app-main',
@@ -47,7 +48,7 @@ export class MainComponent implements OnInit {
 
   private getAvatars(){
     this.mainService.getMainAvatar().subscribe((avatars: Avatar[]) => {
-      console.log(avatars);
+    this.avatars = avatars;
     })
   }
 }

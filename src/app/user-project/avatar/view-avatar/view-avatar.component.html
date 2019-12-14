@@ -1,0 +1,35 @@
+<p>view-avatar works!</p>
+
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image Url</th>
+            <th scope="col">Folder Name</th>
+            <th scope="col">Short Descripption</th>
+            <th scope="col">Tags</th>
+            <th scope="col">Share Points</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let avatar of avatars">
+            <th scope="row"><input type="checkbox"/></th>
+            <td> <img class="thumbnail" src="{{avatar.ImagesUrl[0]}}"></td>
+            <td>{{avatar.FolderName}}</td>
+            <td>{{avatar.ShortDescription}}</td>
+            <td>{{avatar.Tags}}</td>
+            <td>{{avatar.SharePoint}}</td>
+            <td><button type="button" class="btn btn-danger">X</button>
+                <button type="button" class="btn btn-secondary">Edit</button></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><button type="button" class="btn btn-danger delete">Delete Selected</button></td></tfoot>
+</table>

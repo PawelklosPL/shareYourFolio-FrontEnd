@@ -20,12 +20,12 @@
 <div class="container">
     <div class="card-columns">
         <div *ngFor="let avatar of avatars" class="card">
-            <div class="Badge badge-pill badge-warning" id="sharePointScore" *ngIf="sharePointsAreVisible()">{{avatar.sharePoint}}</div>
-            <img alt="{{avatar.shortDescription}}" class="img-thumbnail img-fluid" src="{{avatar.imagesUrl[0]}}">
+            <div class="Badge badge-pill badge-warning" id="sharePointScore" *ngIf="sharePointsAreVisible()">{{avatar.SharePoint}}</div>
+            <img alt="{{avatar.ShortDescription}}" class="img-thumbnail img-fluid" src="{{avatar.ImagesUrl[0]}}">
             <div class="card-block">
-                <h4 class="card-title" *ngIf="nameIsVisible()">{{avatar.folderName}}</h4>
+                <h4 class="card-title" *ngIf="nameIsVisible()">{{avatar.FolderName}}</h4>
                 <span *ngIf="tagsAreVisible()"><span *ngFor="let tag of avatar.tags" class="Badge badge-pill badge-success">{{tag | titlecase}}</span></span>
-                <p class="card-text" *ngIf="descriptionIsVisible()">{{avatar.shortDescription}}</p>
+                <p class="card-text" *ngIf="descriptionIsVisible()">{{avatar.ShortDescription}}</p>
             </div>
         </div>
     </div>

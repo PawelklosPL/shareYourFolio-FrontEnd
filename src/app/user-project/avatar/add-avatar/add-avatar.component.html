@@ -1,0 +1,33 @@
+<p>add-avatar works!</p>
+
+<form #avatarForm="ngForm" (ngSubmit)="onSubmit(avatarForm)" *ngIf="!isLoading">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">FolderName</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Sizing example input" id="FolderName"
+            aria-describedby="inputGroup-sizing-default">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">ShortDesription</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Sizing example input" id="ShortDesription"
+            aria-describedby="inputGroup-sizing-default">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">ImagesUrl</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Sizing example input" id="ImagesUrl"
+            aria-describedby="inputGroup-sizing-default">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Tags</span>
+        </div>
+        <input type="text"  class="form-control" aria-label="Sizing example input" id="Tags"
+            aria-describedby="inputGroup-sizing-default">
+    </div>
+    <button  type="button" class="btn btn-info" >Click</button>
+</form>

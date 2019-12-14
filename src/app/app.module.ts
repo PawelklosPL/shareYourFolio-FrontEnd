@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { MainService } from './main/main.service';
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth/auth.service';
+import { AddAvatarComponent } from './user-project/avatar/add-avatar/add-avatar.component';
+import { ViewAvatarComponent } from './user-project/avatar/view-avatar/view-avatar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { AuthService } from './auth/auth.service';
     UserSettingsComponent,
     UserProjectComponent,
     HeaderComponent,
-    AuthComponent
+    AuthComponent,
+    AddAvatarComponent,
+    ViewAvatarComponent
   ],
   imports: [
     BrowserModule,
