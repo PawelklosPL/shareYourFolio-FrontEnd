@@ -49,6 +49,7 @@ export class MainComponent implements OnInit {
   private getAvatars(){
     this.mainService.getMainAvatar().subscribe((avatars: Avatar[]) => {
     this.avatars = avatars;
+    console.log(this.avatars);
     })
   }
 }
