@@ -9,6 +9,7 @@ export class Avatar {
     public ImagesUrl: string[];
     public Tags: string[];
     public SharePoints: number;
-    public CommentsNumber: number;
+    public Comment_Id: number;
+    public CommentNumber: number;
     constructor() { }
 }
