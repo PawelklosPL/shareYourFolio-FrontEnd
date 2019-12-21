@@ -14,6 +14,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth/auth.service';
 import { AddAvatarComponent } from './user-project/avatar/add-avatar/add-avatar.component';
 import { ViewAvatarComponent } from './user-project/avatar/view-avatar/view-avatar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ViewAvatarComponent } from './user-project/avatar/view-avatar/view-avat
     HeaderComponent,
     AuthComponent,
     AddAvatarComponent,
-    ViewAvatarComponent
+    ViewAvatarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
