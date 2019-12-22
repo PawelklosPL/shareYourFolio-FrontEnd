@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Avatar } from './avatar.model';
 
 @Injectable({ providedIn: 'root' })
 export class AvatarService {
@@ -14,4 +15,11 @@ public getMainAvatar():Observable<Object> {
     );
     return avatarListRequest;
 }
+
+public createMainAvatar(avatarModel: Avatar):Observable<Object> {
+    const header = new HttpHeaders().set("Content-Type", "application/x-www-form-urlencoded");
+    let mainAvatar: Observable<Object> = this.http.post(`${environment.serverUrl}/Avatar/Create`, avatarModel);
+    return mainAvatar;
+    }
+
 }

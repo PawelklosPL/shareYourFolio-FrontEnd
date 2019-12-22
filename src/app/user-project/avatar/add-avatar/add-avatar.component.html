@@ -1,33 +1,32 @@
-<p>add-avatar works!</p>
-
 <form #avatarForm="ngForm" (ngSubmit)="onSubmit(avatarForm)" *ngIf="!isLoading">
-    <div class="input-group mb-3">
+
+    <div class="input-group mb-3 form-group">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">FolderName</span>
+            <span for="folderName" class="input-group-text" id="inputGroup-sizing-default">FolderName</span>
         </div>
-        <input type="text" class="form-control" aria-label="Sizing example input" id="FolderName"
-            aria-describedby="inputGroup-sizing-default">
+        <input ngModel name="folderName" type="text" class="form-control" id="folderName">
     </div>
-    <div class="input-group mb-3">
+
+    <div class="input-group mb-3 form-group">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">ShortDesription</span>
+            <span class="input-group-text" id="inputGroup-sizing-default">ShortDescription</span>
         </div>
-        <input type="text" class="form-control" aria-label="Sizing example input" id="ShortDesription"
-            aria-describedby="inputGroup-sizing-default">
+        <input ngModel name="description" type="text" class="form-control" id="decsription">
     </div>
-    <div class="input-group mb-3">
+
+    <div class="input-group mb-3 form-group">
         <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">ImagesUrl</span>
         </div>
-        <input type="text" class="form-control" aria-label="Sizing example input" id="ImagesUrl"
-            aria-describedby="inputGroup-sizing-default">
+        <input ngModel name="imagesUrl" type="text" class="form-control" id="imagesUrl">
     </div>
-    <div class="input-group mb-3">
+    
+    <div class="input-group mb-3 form-group">
         <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">Tags</span>
         </div>
-        <input type="text"  class="form-control" aria-label="Sizing example input" id="Tags"
-            aria-describedby="inputGroup-sizing-default">
+        <input ngModel name="tags" type="text" class="form-control" id="tags">
     </div>
-    <button  type="button" class="btn btn-info" >Click</button>
+
+    <button type="submit" class="btn btn-info">Click</button>
 </form>

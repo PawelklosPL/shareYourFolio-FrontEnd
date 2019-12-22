@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AvatarService } from '../avatar.service';
+import { Avatar } from '../avatar.model';
 
 @Component({
   selector: 'app-add-avatar',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddAvatarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private avatarService:AvatarService) { }
 
   ngOnInit() {
+  }
+
+  public onSubmit(form: NgForm) {
+    if (!form.valid) {
+      return;
+    }
+    let avatar:Avatar = new Avatar();
+    avatar.FolderName = form.value.folderName;
+    avatar.Description = form.value.description;
+    avatar.ImagesUrl = form.value.imagesUrl;
+    avatar.Tags = form.value.tags;
+    avatar.AuthorId = '2';
+    this.avatarService.createMainAvatar(avatar).subscribe((avatar:Avatar) => {
+        console.log(avatar);
+    })
   }
 
 }
