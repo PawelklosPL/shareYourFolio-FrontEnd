@@ -15,7 +15,7 @@ export class AuthService {
         return this
             .http
             .post(`${environment.serverUrl}/token`,
-                "grant_type=password&username=pierwszy@dupa.pl&password=Pwd12345."
+                "grant_type=password&username=pierwszy1@dupa.pl&password=Pwd12345.1"
                 , { headers });
     }
     public register() {
