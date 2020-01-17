@@ -8,14 +8,14 @@ import { createWiresService } from 'selenium-webdriver/firefox';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     constructor(private http: HttpClient) { }
-    public login(login: string, passwords: string) {
+    public login(login: string, password: string) {
         const headers = new HttpHeaders()
             .set("Content-Type", "application/x-www-form-urlencoded");
 
         return this
             .http
             .post(`${environment.serverUrl}/token`,
-                "grant_type=password&username=pierwszy1@dupa.pl&password=Pwd12345.1"
+                `grant_type=password&username=${login}&password=${password}`
                 , { headers });
     }
     public register() {

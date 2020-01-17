@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
-  templateUrl: './auth.component.html'
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
   isLoginMode: boolean = true;
@@ -32,20 +33,28 @@ export class AuthComponent implements OnInit {
     }
     const email = form.value.email;
     const password = form.value.password;
-    this.authService.login(email, password).subscribe((responseData: Req) => {
+    this.authService.login(email, password).subscribe((responseData: any) => {
       this.userToken = responseData.access_token;
       sessionStorage.setItem('Token', responseData.access_token);
-    });
+        this.router.navigate(['/main']);
+      }, (error: FalseRequest) => {
+        alert("Kręci się jak gówno w przeręblu!");
+      } );
 
-    this.router.navigate(['/main']);
   }
 
 }
 export class Req {
   public expires: string;
-  public issued: string
+  public issued: string;
   public access_token: string;
   public expires_in: number;
   public token_type: string;
   public userName: string;
+
+}
+
+export class FalseRequest {
+  public error: string;
+  public error_description: string;
 }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  serverUrl: "http://localhost:56277"
+  serverUrl: "http://syfmanager.pl"
 };
 
 /*
