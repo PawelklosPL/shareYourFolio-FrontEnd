@@ -1,0 +1,15 @@
+table, th, td {
+    border: 1px solid black;
+  }
+table {
+    width:50%;
+}
+td.correct{
+    color: green;
+}
+td.incorrect{
+    color: red;
+}
+td {
+    font-weight: bold;
+}

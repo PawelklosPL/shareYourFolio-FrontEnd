@@ -15,6 +15,9 @@ import { AuthService } from './auth/auth.service';
 import { AddAvatarComponent } from './user-project/avatar/add-avatar/add-avatar.component';
 import { ViewAvatarComponent } from './user-project/avatar/view-avatar/view-avatar.component';
 import { FooterComponent } from './footer/footer.component';
+import { TestsComponent } from './tests/tests.component';
+import { TestComponent } from './tests/test/test.component';
+import { TestService } from './tests/test/test.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { FooterComponent } from './footer/footer.component';
     AuthComponent,
     AddAvatarComponent,
     ViewAvatarComponent,
-    FooterComponent
+    FooterComponent,
+    TestsComponent,
+    TestComponent
+
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,7 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [MainService,AuthService],
+  providers: [MainService,AuthService, TestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

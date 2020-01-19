@@ -1,0 +1,13 @@
+  <table>
+    <tr>
+        <th>Name</th>
+        <th>Url</th>
+        <th>Status</th>
+    </tr>
+    <tr>
+        <td>{{test.name}}</td>
+        <td>{{test.url}}</td>
+        <td [className]="test.status ? 'correct' : 'incorrect'" > {{test.status}}</td>
+      </tr>
+  </table>
+  <br>

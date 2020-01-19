@@ -5,13 +5,15 @@ import { MainComponent } from './main/main.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { UserProjectComponent } from './user-project/user-project.component';
 import { AuthComponent } from './auth/auth.component';
+import { TestsComponent } from './tests/tests.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/main', pathMatch: 'full' },
     { path: 'main', component: MainComponent },
     { path: 'user-settings', component: UserSettingsComponent },
     { path: 'user-projects', component: UserProjectComponent },
-    { path: 'auth', component: AuthComponent }
+    { path: 'auth', component: AuthComponent },
+    { path: 'tests', component: TestsComponent }
 ];
 
 @NgModule({
