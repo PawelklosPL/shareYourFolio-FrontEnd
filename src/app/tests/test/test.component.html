@@ -7,7 +7,13 @@
     <tr>
         <td>{{test.name}}</td>
         <td>{{test.url}}</td>
-        <td [className]="test.status ? 'correct' : 'incorrect'" > {{test.status}}</td>
+        <td id="status" [className]="test.status ? 'correct' : 'incorrect'" > {{test.status}}</td>
       </tr>
-  </table>
+    </table>
+
+    <button class="btn btn-primary" (click)="sendReqAgane()"><span class="icon-refresh"></span>Refresh</button>
+    <span>{{response | slice:0:sliceNumber }}</span>
+    <input *ngIf="sliceNumber == 100" type="button" value="show more" (click)="showMore()" />
+    <input *ngIf="sliceNumber != 100" type="button" value="show less" (click)="showMore()" />
+  <br>
   <br>

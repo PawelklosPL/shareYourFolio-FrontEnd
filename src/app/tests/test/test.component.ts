@@ -11,9 +11,20 @@ import { Avatar } from 'src/app/user-project/avatar/avatar.model';
 export class TestComponent implements OnInit {
 
   @Input() test: Test;
+  private response: String;
+  private sliceNumber: number = 100;
 
   constructor(private testService: TestService) {
 
+  }
+  public showMore(){
+    if(this.sliceNumber == 100)
+    {
+      this.sliceNumber = 100000;
+    }else
+    {
+      this.sliceNumber = 100;
+    }
   }
 
   ngOnInit() {
@@ -21,10 +32,18 @@ export class TestComponent implements OnInit {
   }
   sendReq() {
     this.testService.sendReq(this.test.url).subscribe((avatars: Avatar[]) => {
+      this.response = JSON.stringify(avatars);
       this.test.status = true;
     }, (error: any) => {
+      this.response = JSON.stringify(error);
       this.test.status = false;
     })
+  }
+  sendReqAgane(){
+    this.sliceNumber = 100;
+    this.response = "";
+    this.test.status = false;
+    this.sendReq();
   }
 
 }
