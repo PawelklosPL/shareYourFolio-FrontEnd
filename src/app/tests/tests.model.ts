@@ -10,4 +10,7 @@ export class Test {
     name: string;
     url: string;
     status: boolean;
+    type: string;
+    postBody?: any;
+
 }

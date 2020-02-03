@@ -31,13 +31,26 @@ export class TestComponent implements OnInit {
     this.sendReq();
   }
   sendReq() {
-    this.testService.sendReq(this.test.url).subscribe((avatars: Avatar[]) => {
-      this.response = JSON.stringify(avatars);
-      this.test.status = true;
-    }, (error: any) => {
-      this.response = JSON.stringify(error);
-      this.test.status = false;
-    })
+    if(this.test.type == "get")
+    {
+      this.testService.sendGetReq(this.test.url).subscribe((avatars: Avatar[]) => {
+        this.response = JSON.stringify(avatars);
+        this.test.status = true;
+      }, (error: any) => {
+        this.response = JSON.stringify(error);
+        this.test.status = false;
+      })
+    } else if(this.test.type == "post")
+    {
+      this.testService.sendPostReq(this.test.url, this.test.postBody).subscribe((avatars: Avatar[]) => {
+        this.response = JSON.stringify(avatars);
+        this.test.status = true;
+      }, (error: any) => {
+        this.response = JSON.stringify(error);
+        this.test.status = false;
+      })
+    }
+
   }
   sendReqAgane(){
     this.sliceNumber = 100;

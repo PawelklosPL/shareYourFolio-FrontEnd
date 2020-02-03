@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  serverUrl: "http://localhost:56277/"
+  serverUrl: "http://64.20.53.58/plesk-site-preview/syfmanager.pl"
+  // serverUrl: "http://localhost:56277"
 };
 
 /*
