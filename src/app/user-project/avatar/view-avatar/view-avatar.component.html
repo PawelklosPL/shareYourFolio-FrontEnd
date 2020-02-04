@@ -26,7 +26,7 @@
             <td>{{avatar.SharePoints}}</td>
             <td>{{avatar.CommentNumber}}</td>
             <td>{{avatar.Comment_Id}}</td>
-            <td><button type="button" class="btn btn-danger">X</button>
+            <td><button type="button" class="btn btn-danger" (click)="removeAvatar(avatar.Id)">X</button>
                 <button type="button" class="btn btn-secondary">Edit</button></td>
         </tr>
     </tbody>

@@ -18,6 +18,13 @@ export class ViewAvatarComponent implements OnInit {
       this.avatars = avatars;
     });
   }
-
+  removeAvatar(avatarId: number) {
+    this.avatarService.removeAvatar(avatarId).subscribe(()=> {
+      let avatar = this.avatars.find((avatar)=>{
+        return avatar.Id == avatarId;
+      });
+      this.avatars.splice(this.avatars.indexOf(avatar), 1);
+    });
+  }
 
 }
