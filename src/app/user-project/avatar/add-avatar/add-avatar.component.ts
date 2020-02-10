@@ -20,14 +20,17 @@ export class AddAvatarComponent implements OnInit {
       return;
     }
     let avatar:Avatar = new Avatar();
+    avatar.Name = form.value.name;
     avatar.FolderName = form.value.folderName;
     avatar.Description = form.value.description;
     avatar.ImagesUrl = form.value.imagesUrl;
-    avatar.Tags = form.value.tags;
+    avatar.Tags = this.divideTags(form.value.tags);
     avatar.AuthorId = '2';
     this.avatarService.createMainAvatar(avatar).subscribe((avatar:Avatar) => {
-        console.log(avatar);
+       window.location.reload()
     })
   }
-
+    private divideTags(avatarTags: string): string[] {
+      return avatarTags.split(" ");  
+    }
 }

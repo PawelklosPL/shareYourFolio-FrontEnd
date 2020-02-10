@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -18,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TestsComponent } from './tests/tests.component';
 import { TestComponent } from './tests/test/test.component';
 import { TestService } from './tests/test/test.service';
+import { ReplacePipe } from './pipes/replace.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { TestService } from './tests/test/test.service';
     ViewAvatarComponent,
     FooterComponent,
     TestsComponent,
-    TestComponent
+    TestComponent,
+    ReplacePipe
 
   ],
   imports: [
