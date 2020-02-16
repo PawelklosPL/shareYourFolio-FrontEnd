@@ -14,10 +14,9 @@ export class ViewAvatarComponent implements OnInit {
   public avatars: Avatar[];
 
   ngOnInit() {
-    this.avatarService.getMainAvatar().subscribe((avatars:Avatar[])=>{
-      this.avatars = avatars;
-    });
+    this.avatarService.currentAvatar.subscribe(avatar => this.avatars = avatar);
   }
+
   removeAvatar(avatarId: number) {
     this.avatarService.removeAvatar(avatarId).subscribe(()=> {
       let avatar = this.avatars.find((avatar)=>{

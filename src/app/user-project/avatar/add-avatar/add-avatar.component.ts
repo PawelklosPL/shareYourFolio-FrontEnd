@@ -27,7 +27,7 @@ export class AddAvatarComponent implements OnInit {
     avatar.Tags = this.divideTags(form.value.tags);
     avatar.AuthorId = '2';
     this.avatarService.createMainAvatar(avatar).subscribe((avatar:Avatar) => {
-       window.location.reload()
+      this.avatarService.addAvatar(avatar);
     })
   }
     private divideTags(avatarTags: string): string[] {

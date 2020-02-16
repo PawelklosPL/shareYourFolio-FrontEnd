@@ -18,14 +18,19 @@
                     {{isLoginMode ? 'Sing Up' : 'Log in'}}</button>
             </div>
         </form>
+      
         <table>
             <tr>
               <th>Login</th>
               <th>Password</th>
+              <th>Actions</th>
             </tr>
             <tr>
               <td>pierwszy1@dupa.pl</td>
               <td>Pwd12345.11</td>
+              <td><button class="btn btn-primary" (click)="logInAss()">Zaloguj sb</button>  <div *ngIf="loadingGif" class="spinner-border text-info" role="status">
+                <span class="sr-only">Loading...</span></div></td>
+              
             </tr>
           </table>
           

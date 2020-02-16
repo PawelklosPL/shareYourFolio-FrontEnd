@@ -1,9 +1,6 @@
 import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { AppState } from './auth.model';
 import { AuthService } from './auth.service';
-import { environment } from 'src/environments/environment';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -19,6 +16,7 @@ export class AuthComponent implements OnInit {
   private closeSub: Subscription;
   private storeSub: Subscription;
   public userToken: string = "";
+  public loadingGif: boolean = false;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -27,22 +25,31 @@ export class AuthComponent implements OnInit {
     }
   }
 
+  public logInAss() {
+    this.logInAs('pierwszy1@dupa.pl', 'Pwd12345.11');
+  }
+
   public onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
     }
     const email = form.value.email;
     const password = form.value.password;
-    this.authService.login(email, password).subscribe((responseData: any) => {
-      this.userToken = responseData.access_token;
-      sessionStorage.setItem('Token', responseData.access_token);
-        this.router.navigate(['/main']);
-      }, (error: FalseRequest) => {
-        alert("Kręci się jak gówno w przeręblu!");
-      } );
+    this.logInAs(email, password);
 
   }
 
+
+  private logInAs(email:string, password: string) {
+    this.loadingGif = !this.loadingGif;
+    this.authService.login(email, password).subscribe((responseData: any) => {
+      this.userToken = responseData.access_token;
+      sessionStorage.setItem('Token', responseData.access_token);
+      this.router.navigate(['/main']);
+    }, (error: FalseRequest) => {
+      alert("Kręci się jak gówno w przeręblu!");
+    });
+  }
 }
 export class Req {
   public expires: string;
