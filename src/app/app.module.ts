@@ -18,6 +18,7 @@ import { TestsComponent } from './tests/tests.component';
 import { TestComponent } from './tests/test/test.component';
 import { TestService } from './tests/test/test.service';
 import { ReplacePipe } from './pipes/replace.pipe';
+import { FooterService } from './footer/footer.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { ReplacePipe } from './pipes/replace.pipe';
     FormsModule,
     HttpClientModule
   ],
-  providers: [MainService,AuthService, TestService],
+  providers: [MainService,AuthService, TestService, FooterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

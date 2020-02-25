@@ -16,17 +16,17 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let avatar of avatars">
+        <tr *ngFor="let row of rows">
             <th scope="row"><input type="checkbox"/></th>
-            <td> <img class="thumbnail" src="{{avatar.ImagesUrl[0]}}"></td>
-            <td>{{avatar.Name}}</td>
-            <td>{{avatar.FolderName}}</td>
-            <td>{{avatar.Description}}</td>
-            <td>{{avatar.Tags | replace:''}}</td>
-            <td>{{avatar.SharePoints}}</td>
-            <td>{{avatar.CommentNumber}}</td>
-            <td>{{avatar.Comment_Id}}</td>
-            <td><button type="button" class="btn btn-danger" (click)="removeAvatar(avatar.Id)">X</button>
+            <td> <img class="thumbnail" src="{{row.avatar.ImagesUrl[0]}}"></td>
+            <td>{{row.avatar.Name}}</td>
+            <td>{{row.avatar.FolderName}}</td>
+            <td>{{row.avatar.Description}}</td>
+            <td>{{row.avatar.Tags | replace:''}}</td>
+            <td>{{row.avatar.SharePoints}}</td>
+            <td>{{row.avatar.CommentNumber}}</td>
+            <td>{{row.avatar.Comment_Id}}</td>
+            <td><button type="button" class="btn btn-danger" (click)="removeAvatar(row.avatar.Id)">X</button>
                 <button type="button" class="btn btn-secondary">Edit</button></td>
         </tr>
     </tbody>
@@ -40,5 +40,5 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><button type="button" class="btn btn-danger delete">Delete Selected</button></td></tfoot>
+        <td><button type="button" class="btn btn-danger delete" (click)="removeAvatars()">Delete Selected</button></td></tfoot>
 </table>
