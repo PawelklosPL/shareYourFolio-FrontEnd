@@ -19,7 +19,7 @@ export class AddAvatarComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-    let avatar:Avatar = new Avatar();
+  const avatar:Avatar = new Avatar();
     avatar.Name = form.value.name;
     avatar.FolderName = form.value.folderName;
     avatar.Description = form.value.description;
@@ -31,6 +31,6 @@ export class AddAvatarComponent implements OnInit {
     })
   }
     private divideTags(avatarTags: string): string[] {
-      return avatarTags.split(" ");  
+      return avatarTags.split(' ');
     }
 }

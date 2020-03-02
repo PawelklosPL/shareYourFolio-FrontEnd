@@ -19,24 +19,18 @@ export class AvatarService {
         });
     }
 
-// public getMainAvatar():Observable<Object> {
-//     let avatarListRequest: Observable<Object> = this.http.get(`${environment.serverUrl}/Avatar`
-//     );
-//     return avatarListRequest;
-// }
-
 public addAvatar(avatar:Avatar){
     this.avatarSource.value.push(avatar);
     this.avatarSource.next(this.avatarSource.value);
 }
 
 public createMainAvatar(avatarModel: Avatar):Observable<Object> {
-    let mainAvatar: Observable<Object> = this.http.post(`${environment.serverUrl}/Avatar/Create`, avatarModel);
+    const mainAvatar: Observable<Object> = this.http.post(`${environment.serverUrl}/Avatar/Create`, avatarModel);
     return mainAvatar;
     }
 
     public removeAvatar(avatarId: number):Observable<Object> {
-        let avatarListRequest: Observable<Object> = this.http.get(`${environment.serverUrl}/Avatar/Delete/${avatarId}`
+        const avatarListRequest: Observable<Object> = this.http.get(`${environment.serverUrl}/Avatar/Delete/${avatarId}`
     );
         return avatarListRequest;
     }

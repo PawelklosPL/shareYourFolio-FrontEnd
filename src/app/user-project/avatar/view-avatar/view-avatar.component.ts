@@ -12,32 +12,30 @@ export class ViewAvatarComponent implements OnInit {
 
   constructor(private avatarService: AvatarService) { }
   public rows: Table[] = [];
-  public avatars: Avatar[];
 
   ngOnInit() {
-    let fu: Table[] = [];
     this.avatarService.currentAvatar.subscribe((avatar: any) => {
       if (avatar) {
+        this.rows = [];
         avatar.forEach((Avatar: Avatar) => {
           const table: Table = { isSelected: false, avatar: Avatar };
-          this.rows.push(table);
+          const existsInTable = this.rows.find((row: Table) => {
+            return row.avatar.Id == Avatar.Id;
+          });
+          if (!existsInTable) {
+            this.rows.push(table);
+          }
         });
-        fu = this.rows;
-        console.log(this.rows);
       }
     });
-    this.rows = fu;
-    // this.avatarService.currentAvatar.subscribe((avatar: any) => {
-    //   alert(avatar);
-    // });
   }
 
   removeAvatar(avatarId: number) {
     this.avatarService.removeAvatar(avatarId).subscribe(() => {
-      let avatar = this.avatars.find((avatar) => {
-        return avatar.Id == avatarId;
+      const row = this.rows.find((row) => {
+        return row.avatar.Id === avatarId;
       });
-      this.avatars.splice(this.avatars.indexOf(avatar), 1);
+      this.rows.splice(this.rows.indexOf(row), 1);
     });
   }
 
