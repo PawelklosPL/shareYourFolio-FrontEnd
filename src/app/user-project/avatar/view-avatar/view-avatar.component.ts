@@ -19,12 +19,7 @@ export class ViewAvatarComponent implements OnInit {
         this.rows = [];
         avatar.forEach((Avatar: Avatar) => {
           const table: Table = { isSelected: false, avatar: Avatar };
-          const existsInTable = this.rows.find((row: Table) => {
-            return row.avatar.Id == Avatar.Id;
-          });
-          if (!existsInTable) {
-            this.rows.push(table);
-          }
+          this.rows.push(table);
         });
       }
     });
@@ -36,7 +31,12 @@ export class ViewAvatarComponent implements OnInit {
         return row.avatar.Id === avatarId;
       });
       this.rows.splice(this.rows.indexOf(row), 1);
+      this.avatarService.removeAvatarFromList(row.avatar);
     });
+  }
+
+  editAvatar(avatar: Avatar) {
+    this.avatarService.editAvatar(avatar);
   }
 
   removeAvatars() {
