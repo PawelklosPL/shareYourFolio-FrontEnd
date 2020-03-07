@@ -17,7 +17,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let row of rows">
-            <th scope="row"><input type="checkbox"/></th>
+            <th scope="row"><input (click)="selectAvatar(row)" type="checkbox"/></th>
             <td> <img class="thumbnail" src="{{row.avatar.ImagesUrl[0]}}"></td>
             <td>{{row.avatar.Name}}</td>
             <td>{{row.avatar.FolderName}}</td>

@@ -24,36 +24,33 @@ export class AvatarService {
     }
 
     replaceAvatar(avatar: Avatar) {
-        // const changeAvatar: Avatar = this.avatarSource.value.find((a: Avatar) => {
-        //     return a.Id === avatar.Id;
-        // });
-        this.avatarSource.value.forEach((a: Avatar) => {
-           if ( a.Id === avatar.Id) {
-            a = avatar;
-           }
+        const changeAvatar: Avatar = this.avatarSource.value.find((a: Avatar) => {
+            return a.Id === avatar.Id;
         });
+        const avatarIndex = this.avatarSource.value.indexOf(changeAvatar);
+        this.avatarSource.value[avatarIndex] = avatar;
         this.avatarSource.next(this.avatarSource.value);
     }
-  
+
 
     public addAvatar(avatar: Avatar) {
         this.avatarSource.value.push(avatar);
         this.avatarSource.next(this.avatarSource.value);
     }
 
-    public createMainAvatar(avatarModel: Avatar): Observable<Object> {
-        const mainAvatar: Observable<Object> = this.http.post(`${environment.serverUrl}/Avatar/Create`, avatarModel);
+    public createMainAvatar(avatarModel: Avatar): Observable<object> {
+        const mainAvatar: Observable<object> = this.http.post(`${environment.serverUrl}/Avatar/Create`, avatarModel);
         return mainAvatar;
     }
 
-    public removeAvatar(avatarId: number): Observable<Object> {
-        const avatarListRequest: Observable<Object> = this.http.get(`${environment.serverUrl}/Avatar/Delete/${avatarId}`
+    public removeAvatar(avatarId: number): Observable<object> {
+        const avatarListRequest: Observable<object> = this.http.get(`${environment.serverUrl}/Avatar/Delete/${avatarId}`
         );
         return avatarListRequest;
     }
 
     editAvatarToSend(avatarEdit: Avatar) {
-        const mainAvatar: Observable<Object> = this.http.post(`${environment.serverUrl}/Avatar/Edit`, avatarEdit);
+        const mainAvatar: Observable<object> = this.http.post(`${environment.serverUrl}/Avatar/Edit`, avatarEdit);
         return mainAvatar;
     }
 
@@ -65,5 +62,22 @@ export class AvatarService {
 
     editAvatar(avatar: Avatar) {
         this.avatarSourceEdit.next(avatar);
+    }
+
+    public  removeAvatars(avatarIds: number[]): Observable<Object>  {
+        const avatarListRequest: Observable<Object> = this.http.post(`${environment.serverUrl}/Avatar/Deletes`, avatarIds);
+        return avatarListRequest;
+    }
+
+    public removeAvatarsFromList(avatarIds: number[]) {
+        avatarIds.forEach((avatarId: number) => {
+        const deleteAvatar = this.avatarSource.value.find((avatar: Avatar) => {
+            return avatar.Id === avatarId;
+        });
+        const deleteAvatarIndex = this.avatarSource.value.indexOf(deleteAvatar);
+        this.avatarSource.value.splice(deleteAvatarIndex, 1);
+        this.avatarSource.next(this.avatarSource.value);     
+        });
+
     }
 }

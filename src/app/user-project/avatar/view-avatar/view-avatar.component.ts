@@ -40,6 +40,27 @@ export class ViewAvatarComponent implements OnInit {
   }
 
   removeAvatars() {
-    alert('!');
+    const avatarIds: number[] = [];
+    this.rows.forEach((row: Table) => {
+      if (row.isSelected) {
+        avatarIds.push(row.avatar.Id);
+      }
+    });
+    this.avatarService.removeAvatars(avatarIds).subscribe((isSuccess: boolean) => {
+      if(isSuccess) {
+        avatarIds.forEach((avatarId: number) => {
+          const deleteRow = this.rows.find((rows: Table) =>{
+            rows.avatar.Id === avatarId;
+          });
+        this.rows.splice(this.rows.indexOf(deleteRow), 1);
+        });
+        this.avatarService.removeAvatarsFromList(avatarIds);
+      }
+    });
   }
+
+  selectAvatar(row: Table) {
+    row.isSelected = !row.isSelected;
+  }
+
 }
