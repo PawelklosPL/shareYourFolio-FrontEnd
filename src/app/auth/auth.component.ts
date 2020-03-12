@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent implements OnInit {
   isLoginMode: boolean = true;
-  isLoading: boolean = false;
+  register: boolean = false;
   error: string = null;
   private closeSub: Subscription;
   private storeSub: Subscription;
-  public userToken: string = "";
+  public userToken: string = '';
   public loadingGif: boolean = false;
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -36,20 +36,45 @@ export class AuthComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
     this.logInAs(email, password);
-
   }
 
 
-  private logInAs(email:string, password: string) {
+  private logInAs(email: string, password: string) {
     this.loadingGif = !this.loadingGif;
     this.authService.login(email, password).subscribe((responseData: any) => {
       this.userToken = responseData.access_token;
       sessionStorage.setItem('Token', responseData.access_token);
       this.router.navigate(['/main']);
     }, (error: FalseRequest) => {
-      alert("Kręci się jak gówno w przeręblu!");
+      alert('Kręci się jak gówno w przeręblu!');
     });
   }
+
+  public onSwitchMode() {
+    this.register = !this.register;
+    }
+
+   public registerUsername(form: NgForm) {
+    if (!form.valid) {
+      return;
+    }
+    const email = form.value.email;
+    const password = form.value.password;
+    const confirmPassword = form.value.confirmPassword;
+    if (password !== confirmPassword){
+      return;
+    }
+    this.SignUpAs(email, password, confirmPassword);
+   }
+  SignUpAs(email: string, password: string, confirmPassword: string) {
+    this.loadingGif = !this.loadingGif;
+    this.authService.register(email, password, confirmPassword).subscribe((responseData: any) => {
+      alert('okej');
+    }, (error: FalseRequest) => {
+      alert('Kręci się jak gówno w przeręblu!');
+    });
+  }
+
 }
 export class Req {
   public expires: string;

@@ -10,7 +10,7 @@ export class AuthService {
     constructor(private http: HttpClient) { }
     public login(login: string, password: string) {
         const headers = new HttpHeaders()
-            .set("Content-Type", "application/x-www-form-urlencoded");
+            .set('Content-Type', 'application/x-www-form-urlencoded');
 
         return this
             .http
@@ -18,8 +18,16 @@ export class AuthService {
                 `grant_type=password&username=${login}&password=${password}`
                 , { headers });
     }
-    public register() {
-
+    public register(eMail: string, password: string, confirmPassword: string) {
+        const headers = new HttpHeaders()
+        .set('Content-Type', 'application/json');
+      
+        const registerDto = {
+            Email: eMail,
+            Password: password,
+            ConfirmPassword: confirmPassword
+        };
+        return this.http.post(`${environment.serverUrl}/api/account/register`, registerDto, {headers});
     }
     public logoff() {
         sessionStorage.clear();

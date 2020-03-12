@@ -19,26 +19,26 @@ export class MainComponent implements OnInit {
   ngOnInit() {
    // this.avatars = this.mainService.getMainAvatarList();
     this.windowOptions = this.mainService.getWindowOption();
-    this.getAvatars(); 
+    this.getAvatars();
   }
 
   public descriptionIsVisible(): boolean {
-    let selectDescription = this.windowOptions.find((windowOption: WindowOption) => { return windowOption.name == "Description" });
-    return selectDescription.value; 
+    const selectDescription = this.windowOptions.find((windowOption: WindowOption) => windowOption.name === 'Description');
+    return selectDescription.value;
   }
 
   public nameIsVisible(): boolean {
-    let selectName = this.windowOptions.find((windowOption: WindowOption) => { return windowOption.name == "Name" });
+    const selectName = this.windowOptions.find((windowOption: WindowOption) => windowOption.name === 'Name');
     return selectName.value;
   }
 
   public tagsAreVisible(): boolean {
-    let selectTags = this.windowOptions.find((windowOption: WindowOption) => { return windowOption.name == "Tags"});
+    const selectTags = this.windowOptions.find((windowOption: WindowOption) => windowOption.name === 'Tags');
     return selectTags.value;
   }
 
-  public sharePointsAreVisible():boolean {
-    let selectSharePoints = this.windowOptions.find((windowOption: WindowOption) => {return windowOption.name == "Share Points"});
+  public sharePointsAreVisible(): boolean {
+    const selectSharePoints = this.windowOptions.find((windowOption: WindowOption) => windowOption.name === 'Share Points');
     return selectSharePoints.value;
   }
 
@@ -46,10 +46,10 @@ export class MainComponent implements OnInit {
     this.windowOptions[index].value = !this.windowOptions[index].value;
   }
 
-  private getAvatars(){
+  private getAvatars() {
     this.mainService.getMainAvatar().subscribe((avatars: Avatar[]) => {
     this.avatars = avatars;
     console.log(this.avatars);
-    })
+    });
   }
 }
