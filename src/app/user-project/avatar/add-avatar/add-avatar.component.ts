@@ -11,7 +11,7 @@ import { Avatar } from '../avatar.model';
 export class AddAvatarComponent implements OnInit {
 
   constructor(private avatarService: AvatarService) { }
-  @ViewChild("avatarForm", {
+  @ViewChild('avatarForm', {
     static: false
   }) avatarForm: NgForm;
 
@@ -35,38 +35,56 @@ export class AddAvatarComponent implements OnInit {
   }
 
   public onSubmit(form: NgForm) {
+    if (!form.valid) {
+      return;
+    }
     if (this.editMode) {
-      if (!form.valid) {
-        return;
-      }
-      const avatar: Avatar = new Avatar();
-      avatar.Id = this.avatarId;
-      avatar.Name = form.value.name;
-      avatar.FolderName = form.value.folderName;
-      avatar.Description = form.value.description;
-      avatar.ImagesUrl = form.value.imagesUrl;
-      avatar.Tags = this.divideTags(form.value.tags);
-      avatar.AuthorId = '2';
-      this.avatarService.editAvatarToSend(avatar).subscribe((avatar: Avatar) => {
-        this.avatarService.replaceAvatar(avatar);
-      })
+      this.editAvatar(form);
     } else {
-      if (!form.valid) {
-        return;
-      }
-      const avatar: Avatar = new Avatar();
-      avatar.Name = form.value.name;
-      avatar.FolderName = form.value.folderName;
-      avatar.Description = form.value.description;
-      avatar.ImagesUrl = form.value.imagesUrl;
-      avatar.Tags = this.divideTags(form.value.tags);
-      avatar.AuthorId = '2';
-      this.avatarService.createMainAvatar(avatar).subscribe((avatar: Avatar) => {
-        this.avatarService.addAvatar(avatar);
-      })
+      this.createAvatar(form);
     }
   }
-  
+
+  private editAvatar(form: NgForm) {
+    const avatar: Avatar = new Avatar();
+    avatar.Id = this.avatarId;
+    avatar.Name = form.value.name;
+    avatar.FolderName = form.value.folderName;
+    avatar.Description = form.value.description;
+    avatar.ImagesUrl = form.value.imagesUrl;
+    avatar.Tags = this.divideTags(form.value.tags);
+    avatar.AuthorId = '2';
+    this.avatarService.editAvatarToSend(avatar).subscribe((avatar: Avatar) => {
+      this.avatarService.replaceAvatar(avatar);
+      this.clearForm();
+    })
+  }
+
+  private createAvatar(form: NgForm) {
+    const avatar: Avatar = new Avatar();
+    avatar.Name = form.value.name;
+    avatar.FolderName = form.value.folderName;
+    avatar.Description = form.value.description;
+    avatar.ImagesUrl = form.value.imagesUrl;
+    avatar.Tags = this.divideTags(form.value.tags);
+    avatar.AuthorId = '2';
+    this.avatarService.createMainAvatar(avatar).subscribe((avatar: Avatar) => {
+      this.avatarService.addAvatar(avatar);
+      this.clearForm();
+    })
+  }
+
+  private clearForm() {
+    this.avatarForm.setValue({
+      name: '',
+      folderName: '',
+      description: '',
+      imagesUrl: '',
+      tags: ''
+    });
+    this.exitEditMode();
+  }
+
   private divideTags(avatarTags: string): string[] {
     return avatarTags.split(' ');
   }

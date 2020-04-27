@@ -62,5 +62,17 @@ export class ViewAvatarComponent implements OnInit {
   selectAvatar(row: Table) {
     row.isSelected = !row.isSelected;
   }
+ 
+  private divideTags(avatarTags: string): string[] {
+    return avatarTags.split(' ');
+  }
+
+  displayTags(joinedTags: string): string {
+    var dividedTags:string[] = this.divideTags(joinedTags);
+    dividedTags.forEach((dividedTag: string) =>{
+      dividedTag = '#' + dividedTag;
+    }) 
+    return dividedTags.join('');
+  }
 
 }
