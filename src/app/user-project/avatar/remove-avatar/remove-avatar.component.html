@@ -1,0 +1,19 @@
+<button type="button" class="btn btn-outline-primary" (click)="open(mymodal)">X</button>
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Removing items</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Do you want to delete item:
+    </div>
+    <div class="modal-body">
+      Name: {{row.avatar.Name}}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Yes</button>
+    </div>
+  </ng-template>
+  

@@ -67,12 +67,13 @@ export class ViewAvatarComponent implements OnInit {
     return avatarTags.split(' ');
   }
 
-  displayTags(joinedTags: string): string {
-    var dividedTags:string[] = this.divideTags(joinedTags);
-    dividedTags.forEach((dividedTag: string) =>{
-      dividedTag = '#' + dividedTag;
-    }) 
-    return dividedTags.join('');
+  displayTags(joinedTags: string[]): string {
+    for (let index = 0; index < joinedTags.length; index++) {
+      if (joinedTags[index][0] != '#') {
+        joinedTags[index] = '#' + joinedTags[index] + ' ';
+      }      
+    }
+    return joinedTags.join('');
   }
 
 }

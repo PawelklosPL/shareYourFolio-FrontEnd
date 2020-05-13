@@ -19,6 +19,8 @@ import { TestComponent } from './tests/test/test.component';
 import { TestService } from './tests/test/test.service';
 import { ReplacePipe } from './pipes/replace.pipe';
 import { FooterService } from './footer/footer.service';
+import { RemoveAvatarComponent } from './user-project/avatar/remove-avatar/remove-avatar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,14 +35,16 @@ import { FooterService } from './footer/footer.service';
     FooterComponent,
     TestsComponent,
     TestComponent,
-    ReplacePipe
+    ReplacePipe,
+    RemoveAvatarComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [MainService,AuthService, TestService, FooterService],
   bootstrap: [AppComponent]
