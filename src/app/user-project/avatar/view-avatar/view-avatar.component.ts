@@ -25,15 +25,15 @@ export class ViewAvatarComponent implements OnInit {
     });
   }
 
-  removeAvatar(avatarId: number) {
-    this.avatarService.removeAvatar(avatarId).subscribe(() => {
-      const row = this.rows.find((row) => {
-        return row.avatar.Id === avatarId;
-      });
-      this.rows.splice(this.rows.indexOf(row), 1);
-      this.avatarService.removeAvatarFromList(row.avatar);
-    });
-  }
+  // removeAvatar(avatarId: number) {
+  //   this.avatarService.removeAvatar(avatarId).subscribe(() => {
+  //     const row = this.rows.find((row) => {
+  //       return row.avatar.Id === avatarId;
+  //     });
+  //     this.rows.splice(this.rows.indexOf(row), 1);
+  //     this.avatarService.removeAvatarFromList(row.avatar);
+  //   });
+  // }
 
   editAvatar(avatar: Avatar) {
     this.avatarService.editAvatar(avatar);
