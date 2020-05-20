@@ -11,8 +11,8 @@ import { Avatar } from 'src/app/user-project/avatar/avatar.model';
 export class TestComponent implements OnInit {
 
   @Input() test: Test;
-  private response: String;
-  private sliceNumber: number = 100;
+  public response: String = '';
+  public sliceNumber: number = 100;
 
   constructor(private testService: TestService) {
 

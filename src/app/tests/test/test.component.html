@@ -12,7 +12,7 @@
     </table>
 
     <button class="btn btn-primary" (click)="sendReqAgane()"><span class="icon-refresh"></span>Refresh</button>
-    <span>{{response | slice:0:sliceNumber }}</span>
+    <span>{{response}}</span>
     <input *ngIf="sliceNumber == 100" type="button" value="show more" (click)="showMore()" />
     <input *ngIf="sliceNumber != 100" type="button" value="show less" (click)="showMore()" />
   <br>

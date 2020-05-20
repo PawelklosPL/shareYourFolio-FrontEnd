@@ -11,9 +11,7 @@ import { Avatar } from '../avatar.model';
 export class AddAvatarComponent implements OnInit {
 
   constructor(private avatarService: AvatarService) { }
-  @ViewChild('avatarForm', {
-    static: false
-  }) avatarForm: NgForm;
+  @ViewChild('avatarForm') avatarForm: NgForm;
 
   public editMode: boolean = false;
   public avatarId: number = 0;

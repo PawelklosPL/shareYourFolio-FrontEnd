@@ -8,6 +8,9 @@ import { AvatarService } from '../avatar.service';
   templateUrl: './remove-avatar.component.html',
   styleUrls: ['./remove-avatar.component.scss']
 })
+
+
+
 export class RemoveAvatarComponent implements OnInit {
   @Input() row: Table;
   modalReference: any;
