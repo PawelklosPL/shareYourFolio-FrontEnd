@@ -24,7 +24,7 @@ export class RemoveAvatarComponent implements OnInit {
     console.log(this.row);
   }
 
-  public open(content) {
+  public openModal(content) {
       this.modalReference = this.modalService.open(content);
       this.modalReference.result.then((result) => {
         this.closeResult = 'Closed with: ${result}';

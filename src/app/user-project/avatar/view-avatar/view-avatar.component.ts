@@ -47,12 +47,12 @@ export class ViewAvatarComponent implements OnInit {
       }
     });
     this.avatarService.removeAvatars(avatarIds).subscribe((isSuccess: boolean) => {
-      if(isSuccess) {
+      if (isSuccess) {
         avatarIds.forEach((avatarId: number) => {
-          const deleteRow = this.rows.find((rows: Table) =>{
+          const deleteRow = this.rows.find((rows: Table) => {
             rows.avatar.Id === avatarId;
           });
-        this.rows.splice(this.rows.indexOf(deleteRow), 1);
+          this.rows.splice(this.rows.indexOf(deleteRow), 1);
         });
         this.avatarService.removeAvatarsFromList(avatarIds);
       }
@@ -62,18 +62,17 @@ export class ViewAvatarComponent implements OnInit {
   selectAvatar(row: Table) {
     row.isSelected = !row.isSelected;
   }
- 
-  private divideTags(avatarTags: string): string[] {
-    return avatarTags.split(' ');
-  }
 
   displayTags(joinedTags: string[]): string {
+    joinedTags = joinedTags.filter(Boolean);
     for (let index = 0; index < joinedTags.length; index++) {
       if (joinedTags[index][0] != '#') {
         joinedTags[index] = '#' + joinedTags[index] + ' ';
-      }      
+      } else {
+        joinedTags[index] = joinedTags[index] + ' ';
+      }
     }
-    return joinedTags.join('');
+    return joinedTags.join('').trim();
   }
 
 }

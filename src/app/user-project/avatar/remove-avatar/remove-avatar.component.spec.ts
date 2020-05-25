@@ -1,61 +1,74 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+    ComponentFixture,
+    async,
+    TestBed,
+    fakeAsync,
+    tick,
+} from '@angular/core/testing';
 import { RemoveAvatarComponent } from './remove-avatar.component';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Avatar } from '../avatar.model';
 import { Table } from '../view-avatar/view-avatar.model';
 
+export class MockNgbModalRef {
+    result: Promise<any> = new Promise((resolve, reject) => resolve('x'));
+}
+
 describe('RemoveAvatarComponent', () => {
-    let component: RemoveAvatarComponent;
-    let fixture: ComponentFixture<RemoveAvatarComponent>;
+    let fixtureUnderTest: ComponentFixture<RemoveAvatarComponent>;
+    let componentUnderTest: RemoveAvatarComponent;
+    let modalService: NgbModal;
+    const mockModalRef: any = new MockNgbModalRef();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                RemoveAvatarComponent
-            ],
-            imports: [
-                NgbModule,
-                FormsModule,
-                HttpClientModule
-            ],
-            schemas: [
-                CUSTOM_ELEMENTS_SCHEMA
-            ],
+            declarations: [RemoveAvatarComponent],
+            imports: [NgbModule, FormsModule, HttpClientModule],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        }).compileComponents();
 
-        })
-            .compileComponents();
-    }));
-    beforeEach(() => {
-        fixture = TestBed.createComponent(RemoveAvatarComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+        fixtureUnderTest = TestBed.createComponent(RemoveAvatarComponent);
+        componentUnderTest = fixtureUnderTest.componentInstance;
+        modalService = TestBed.get(NgbModal);
+
         let avatar: Avatar = {
-            AuthorId: '0', AuthorName: '',
+            AuthorId: '0',
+            AuthorName: '',
             CommentNumber: 0,
             Comment_Id: 0,
             Description: '',
             FolderName: '',
-            Id: 0, ImagesUrl: ['', ''],
+            Id: 0,
+            ImagesUrl: ['', ''],
             Name: 'daj mi kawy',
             PublishDate: new Date(),
             SharePoints: 0,
-            Tags: ['', '']
+            Tags: ['', ''],
         };
         let table: Table = {
             avatar: avatar,
-            isSelected: true
+            isSelected: true,
         };
-        component.row = table;
-    });
+        componentUnderTest.row = table;
+    }));
     it('should create', () => {
-        expect(component).toBeDefined();
+        expect(componentUnderTest).toBeDefined();
     });
-    it('name', () => {
-        let button = fixture.debugElement.nativeElement.querySelector('button');
-        button.click();
+    it('should open modal', () => {
+        spyOn(modalService, 'open').and.returnValue(mockModalRef);
+        componentUnderTest.openModal('<xxxx>');
+        expect(modalService.open).toHaveBeenCalledWith('<xxxx>', { size: 'lg' });
     });
+    it('should update closeResult when modal closed', fakeAsync(() => {
+        spyOn(modalService, 'open').and.returnValue(mockModalRef);
+        componentUnderTest.openModal('<xxxx>');
+        tick();
+        expect(componentUnderTest.closeResult).toBe('Closed with: x');
+    }));
+    it('should update closeResult when modal dismissed', fakeAsync(() => {
+        expect(componentUnderTest.row.avatar.Name).toBe('daj mi kawy');
+    }));
 });
-
