@@ -12,6 +12,9 @@ export class ViewAvatarComponent implements OnInit {
 
   constructor(private avatarService: AvatarService) { }
   public rows: Table[] = [];
+  public page: number = 1;
+  public pageSize: number = 5;
+  public collectionSize: number = 11;
 
   ngOnInit() {
     this.avatarService.currentAvatar.subscribe((avatar: any) => {
@@ -24,16 +27,6 @@ export class ViewAvatarComponent implements OnInit {
       }
     });
   }
-
-  // removeAvatar(avatarId: number) {
-  //   this.avatarService.removeAvatar(avatarId).subscribe(() => {
-  //     const row = this.rows.find((row) => {
-  //       return row.avatar.Id === avatarId;
-  //     });
-  //     this.rows.splice(this.rows.indexOf(row), 1);
-  //     this.avatarService.removeAvatarFromList(row.avatar);
-  //   });
-  // }
 
   editAvatar(avatar: Avatar) {
     this.avatarService.editAvatar(avatar);

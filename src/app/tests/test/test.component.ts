@@ -18,7 +18,7 @@ export class TestComponent implements OnInit {
 
   }
   public showMore(){
-    if(this.sliceNumber == 100)
+    if(this.sliceNumber === 100)
     {
       this.sliceNumber = 100000;
     }else

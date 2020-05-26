@@ -1,4 +1,4 @@
-<table class="table table-hover table-dark">
+<table class="table table-hover table-dark table-placement">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let row of rows">
+        <tr *ngFor="let row of rows | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
             <th scope="row"><input (click)="selectAvatar(row)" type="checkbox" /></th>
             <td> <img class="thumbnail" src="{{row.avatar.ImagesUrl[0]}}"></td>
             <td>{{row.avatar.Name}}</td>
@@ -31,15 +31,12 @@
         </tr>
     </tbody>
     <tfoot>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><button type="button" class="btn btn-danger delete" (click)="removeAvatars()">Delete Selected</button></td>
+        <td colspan="5"></td>
+        <td colspan="3">
+        <ngb-pagination 
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="rows.length"></ngb-pagination></td>
+        <td colspan="2"> <button type="button" class="btn btn-danger delete " (click)="removeAvatars()">Delete Selected</button></td>
     </tfoot>
 </table>

@@ -25,12 +25,12 @@ export class RemoveAvatarComponent implements OnInit {
   }
 
   public openModal(content) {
-      this.modalReference = this.modalService.open(content);
-      this.modalReference.result.then((result) => {
-        this.closeResult = 'Closed with: ${result}';
-      }, (reason) => {
-        this.closeResult = 'const Dismissed ${this.getDismissReason(reason)';
-      });
+    this.modalReference = this.modalService.open(content);
+    this.modalService.open(content, { size: 'lg' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
   }
 
   private getDismissReason(reason: any): string {
@@ -39,14 +39,14 @@ export class RemoveAvatarComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  'with: ${ reason }';
+      return `with: ${reason}`;
     }
   }
 
-   public closeModal() {
+  public closeModal() {
     this.avatarService.removeAvatar(this.row.avatar.Id).subscribe(() => {
       this.avatarService.removeAvatarFromList(this.row.avatar);
     });
-    this.modalReference.close();
-   } 
+    this.modalService.dismissAll();
+  }
 }
