@@ -3,6 +3,7 @@ import { Avatar } from '../avatar.model';
 import { AvatarService } from '../avatar.service';
 import { Table } from './view-avatar.model';
 
+
 @Component({
   selector: 'app-view-avatar',
   templateUrl: './view-avatar.component.html',
@@ -15,6 +16,7 @@ export class ViewAvatarComponent implements OnInit {
   public page: number = 1;
   public pageSize: number = 5;
   public collectionSize: number = 11;
+  public sortNumbers: string[] = ['3', '5', '10'];
 
   ngOnInit() {
     this.avatarService.currentAvatar.subscribe((avatar: any) => {
@@ -55,6 +57,7 @@ export class ViewAvatarComponent implements OnInit {
   selectAvatar(row: Table) {
     row.isSelected = !row.isSelected;
   }
+  
 
   displayTags(joinedTags: string[]): string {
     joinedTags = joinedTags.filter(Boolean);

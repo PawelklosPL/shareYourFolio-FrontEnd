@@ -33,10 +33,20 @@
     <tfoot>
         <td colspan="5"></td>
         <td colspan="3">
-        <ngb-pagination 
-            [(page)]="page"
-            [pageSize]="pageSize"
-            [collectionSize]="rows.length"></ngb-pagination></td>
-        <td colspan="2"> <button type="button" class="btn btn-danger delete " (click)="removeAvatars()">Delete Selected</button></td>
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="rows.length"></ngb-pagination>
+        </td>
+        <td colspan="2"> <button type="button" class="btn btn-danger delete " (click)="removeAvatars()">Delete
+                Selected</button></td>
     </tfoot>
+
 </table>
+<div class="row">
+    <div class="col text-right">
+        <div ngbDropdown placement="top-right" class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropup</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button *ngFor="let sortNumber of sortNumbers" ngbDropdownItem>{{sortNumber}}</button>
+            </div>
+        </div>
+    </div>
+</div>
