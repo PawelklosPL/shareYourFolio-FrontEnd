@@ -31,7 +31,15 @@
         </tr>
     </tbody>
     <tfoot>
-        <td colspan="5"></td>
+        <td colspan="4">
+        <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{pageSize}}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button *ngFor="let sortNumber of sortNumbers" ngbDropdownItem (click)="selectSortNumber(sortNumber)">{{sortNumber}}</button>
+            </div>
+        </div>
+    </td>
+        <td></td>
         <td colspan="3">
             <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="rows.length"></ngb-pagination>
         </td>
@@ -40,13 +48,3 @@
     </tfoot>
 
 </table>
-<div class="row">
-    <div class="col text-right">
-        <div ngbDropdown placement="top-right" class="d-inline-block">
-            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropup</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button *ngFor="let sortNumber of sortNumbers" ngbDropdownItem>{{sortNumber}}</button>
-            </div>
-        </div>
-    </div>
-</div>

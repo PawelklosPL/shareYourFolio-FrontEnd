@@ -17,6 +17,7 @@ export class ViewAvatarComponent implements OnInit {
   public pageSize: number = 5;
   public collectionSize: number = 11;
   public sortNumbers: string[] = ['3', '5', '10'];
+  public selectedSortNumber: string = '3';
 
   ngOnInit() {
     this.avatarService.currentAvatar.subscribe((avatar: any) => {
@@ -69,6 +70,10 @@ export class ViewAvatarComponent implements OnInit {
       }
     }
     return joinedTags.join('').trim();
+  }
+
+  public selectSortNumber(selectedSortNumber: string) {
+      this.pageSize = Number(selectedSortNumber);
   }
 
 }
