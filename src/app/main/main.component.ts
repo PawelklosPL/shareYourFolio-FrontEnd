@@ -3,6 +3,7 @@ import { WindowOption } from './main.model';
 import { MainService } from './main.service';
 import { Router } from '@angular/router';
 import { Avatar } from '../user-project/avatar/avatar.model';
+import { ImageHelpers } from '../helpers/imageHelper';
 
 @Component({
   selector: 'app-main',
@@ -17,7 +18,6 @@ export class MainComponent implements OnInit {
   constructor(private mainService: MainService, private router: Router) { }
 
   ngOnInit() {
-   // this.avatars = this.mainService.getMainAvatarList();
     this.windowOptions = this.mainService.getWindowOption();
     this.getAvatars();
   }
@@ -48,8 +48,9 @@ export class MainComponent implements OnInit {
 
   private getAvatars() {
     this.mainService.getMainAvatar().subscribe((avatars: Avatar[]) => {
-    this.avatars = avatars;
-    console.log(this.avatars);
+      ImageHelpers.defaultName(avatars);
+      this.avatars = avatars;
     });
   }
+
 }

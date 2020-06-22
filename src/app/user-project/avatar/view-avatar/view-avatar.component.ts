@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Avatar } from '../avatar.model';
 import { AvatarService } from '../avatar.service';
 import { Table } from './view-avatar.model';
+import { ImageHelpers } from 'src/app/helpers/imageHelper';
 
 
 @Component({
@@ -20,8 +21,13 @@ export class ViewAvatarComponent implements OnInit {
   public selectedSortNumber: string = '3';
 
   ngOnInit() {
+    this.getAvatar();
+  }
+
+  getAvatar() {
     this.avatarService.currentAvatar.subscribe((avatar: any) => {
       if (avatar) {
+        ImageHelpers.defaultName(avatar);
         this.rows = [];
         avatar.forEach((Avatar: Avatar) => {
           const table: Table = { isSelected: false, avatar: Avatar };
@@ -58,7 +64,7 @@ export class ViewAvatarComponent implements OnInit {
   selectAvatar(row: Table) {
     row.isSelected = !row.isSelected;
   }
-  
+
 
   displayTags(joinedTags: string[]): string {
     joinedTags = joinedTags.filter(Boolean);
@@ -73,7 +79,7 @@ export class ViewAvatarComponent implements OnInit {
   }
 
   public selectSortNumber(selectedSortNumber: string) {
-      this.pageSize = Number(selectedSortNumber);
+    this.pageSize = Number(selectedSortNumber);
   }
 
 }
