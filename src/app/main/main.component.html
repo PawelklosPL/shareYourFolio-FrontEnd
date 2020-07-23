@@ -17,14 +17,33 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container" *ngIf="!isLoad">
+    <div class="card-columns">
+        <div *ngFor="let dummy of ' '.repeat(20).split('')" class="card">
+            <div class="Badge badge-pill badge-warning" id="sharePointScore" >
+                Loading...</div>
+            <!-- <img alt="{{avatar.ShortDescription}}" class="img-thumbnail img-fluid" src="assets/temp/5.jpg"> -->
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            <div class="card-block">
+                <h4 class="card-title" >Loading...</h4>
+                <span><span class="Badge badge-pill badge-success">Loading...</span></span>
+                <p class="card-text" >Loading...</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="isLoad">
     <div class="card-columns">
         <div *ngFor="let avatar of avatars" class="card">
-            <div class="Badge badge-pill badge-warning" id="sharePointScore" *ngIf="sharePointsAreVisible()">{{avatar.SharePoints}}</div>
+            <div class="Badge badge-pill badge-warning" id="sharePointScore" *ngIf="sharePointsAreVisible()">
+                {{avatar.SharePoints}}</div>
             <img alt="{{avatar.ShortDescription}}" class="img-thumbnail img-fluid" src="{{avatar.ImagesUrl[0]}}">
             <div class="card-block">
                 <h4 class="card-title" *ngIf="nameIsVisible()">{{avatar.FolderName}}</h4>
-                <span *ngIf="tagsAreVisible()"><span *ngFor="let tag of avatar.tags" class="Badge badge-pill badge-success">{{tag | titlecase}}</span></span>
+                <span *ngIf="tagsAreVisible()"><span *ngFor="let tag of avatar.Tags"
+                        class="Badge badge-pill badge-success">{{tag | titlecase}}</span></span>
                 <p class="card-text" *ngIf="descriptionIsVisible()">{{avatar.Description}}</p>
             </div>
         </div>

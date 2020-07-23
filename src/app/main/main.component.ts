@@ -12,7 +12,7 @@ import { ImageHelpers } from '../helpers/imageHelper';
 })
 export class MainComponent implements OnInit {
   avatars: Avatar[];
-
+  isLoad = false;
   windowOptions: WindowOption[];
   public isCollapsed = false;
   constructor(private mainService: MainService, private router: Router) { }
@@ -48,9 +48,15 @@ export class MainComponent implements OnInit {
 
   private getAvatars() {
     this.mainService.getMainAvatar().subscribe((avatars: Avatar[]) => {
-      ImageHelpers.defaultName(avatars);
-      this.avatars = avatars;
+      this.sleep(5000).then(() => {
+        this.isLoad = true;
+        ImageHelpers.defaultName(avatars);
+        this.avatars = avatars;
+      })
     });
   }
 
+  private sleep(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
 }
